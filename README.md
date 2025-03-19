@@ -1,10 +1,10 @@
-# 🌟 UAS Kelompok 2 🌟
+# 🌟 UAS Kelompok 3 🌟
 
 ## 📂 Daftar Isi Folder
 - **Dokumen UAS** 📄
-  - 📘 Dokumentasi Awal Proyek Pengembangan Basis Data Toko Risky Bawang dan Palawija.pdf
-  - 📙 Fitur Database[1].pdf
-  - 📗 LAPORAN TUGAS UAS kelompok 2.pdf
+  - 📘 Dokumentasi Awal Proyek Pemasaran Tahu.pdf
+  - 📙 Fitur Database.pdf
+  - 📗 LAPORAN TUGAS UAS Kelompok 3.pdf
   - 📕 MANUAL PENGGUNAAN SISTEM MANAJEMEN.pdf
 - **Folder Basic** 📁
   - 🔧 Codingan composer
@@ -29,8 +29,8 @@ For detailed documentation, refer to the files linked below (written in Indonesi
 ## 🤝 Contributors
 | Contributor       | GitHub Profile                                  |
 |-------------------|------------------------------------------------|
-| **Adia Sandra**  | [🌐 Profile](https://github.com/sandraalmeera) |
-| **Yessica**      | [🌐 Profile](https://github.com/yesicafapa)    |
+| **Devano Rafael A.N**  | [🌐 Profile](https://github.com/sandraalmeera) |
+| **Ramadhani Mulya L**      | [🌐 Profile](https://github.com/yesicafapa)    |
 
 ---
 
