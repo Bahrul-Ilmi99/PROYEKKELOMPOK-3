@@ -1,0 +1,111 @@
+/* Reset default margin dan padding */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Header styling */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 1.2rem;
+}
+
+/* Swiper container */
+.swiper-container {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Container untuk produk */
+.container {
+    padding: 20px;
+    max-width: 800px; /* Lebar maksimum container */
+    margin: 0 auto; /* Pusatkan container */
+}
+
+/* Grid produk */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 20px; /* Jarak antar produk */
+}
+
+/* Card produk */
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 15px;
+    aspect-ratio: 1 / 1; /* Bentuk persegi */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 70%; /* Tinggi gambar disesuaikan */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.product-card h3 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.product-card p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.product-card .price {
+    font-weight: bold;
+    color: #4CAF50;
+    font-size: 1rem;
+}
+
+/* Footer styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* 1 kolom di layar kecil */
+    }
+}
