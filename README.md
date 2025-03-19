@@ -48,7 +48,7 @@ We hope this repository provides a clear understanding of our project. 😊
 ## 🚀 How to Use
 1. Clone this repository locally:
    ```bash
-   (https://github.com/Bahrul-Ilmi99/PROYEKKELOMPOK-3.git)
+   https://github.com/Bahrul-Ilmi99/PROYEKKELOMPOK-3.git
    ```
 2. Open the document files in the "Dokumen UAS" folder.
 3. Follow the system usage manual for further information.
