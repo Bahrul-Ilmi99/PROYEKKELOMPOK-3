@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pengguna - Pemasaran Tahu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #2e7d32;
+            color: white;
+            padding: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #a5d6a7;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin: 8px 0;
+            background: #388e3c;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #66bb6a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .content {
+            margin-left: 270px;
+            padding: 30px;
+            flex: 1;
+        }
+
+        .header {
+            background: #2e7d32;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 25px;
+        }
+
+        .profile-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+            color: #1b5e20;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid #66bb6a;
+        }
+
+        .profile-container h3 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #2e7d32;
+        }
+
+        .profile-container label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .profile-container input {
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .profile-container input:focus {
+            border-color: #66bb6a;
+            box-shadow: 0 0 5px #a5d6a7;
+        }
+
+        .btn {
+            background: #388e3c;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 25px;
+            margin-right: 10px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #66bb6a;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #2e7d32;
+        }
+
+        .btn-secondary:hover {
+            background: #c8e6c9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Pemasaran Tahu</h2>
+        <a href="menu.html">🏠 Home</a>
+        <a href="laporan.html">📊 Laporan</a>
+        <a href="stok_produk.html">📦 Stok Produk</a>
+        <a href="transaksi.html">🛒 Transaksi</a>
+        <a href="pengiriman.html">🚚 Pengiriman</a>
+        <a href="pengaturan.html">⚙ Pengaturan</a>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="content">
+        <div class="header">Profil Pengguna</div>
+        <div class="profile-container">
+            <img src="../gambar/gambar_profil.png" alt="Foto Profil" id="fotoProfil">
+
+            <label for="uploadFoto">Ganti Foto Profil</label>
+            <input type="file" id="uploadFoto" accept="image/*" onchange="previewFoto(event)">
+
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" placeholder="Masukkan Nama Lengkap">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Masukkan Email">
+
+            <label for="telepon">Nomor Telepon</label>
+            <input type="tel" id="telepon" placeholder="Masukkan Nomor Telepon">
+
+            <label for="password">Ubah Password</label>
+            <input type="password" id="password" placeholder="Masukkan Password Baru">
+
+            <button class="btn" onclick="simpanProfil()">💾 Simpan</button>
+            <button class="btn btn-secondary" onclick="resetProfil()">🔄 Reset</button>
+        </div>
+    </div>
+
+    <script>
+        function simpanProfil() {
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const telepon = document.getElementById('telepon').value;
+            const password = document.getElementById('password').value;
+
+            alert('Profil berhasil disimpan!\n' +
+                'Nama: ' + nama +
+                '\nEmail: ' + email +
+                '\nTelepon: ' + telepon +
+                (password ? '\nPassword telah diubah.' : '\nPassword tidak diubah.'));
+        }
+
+        function resetProfil() {
+            document.getElementById('nama').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('telepon').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('fotoProfil').src = 'https://via.placeholder.com/100';
+            document.getElementById('uploadFoto').value = '';
+        }
+
+        function previewFoto(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                document.getElementById('fotoProfil').src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+</body>
+
+</html>

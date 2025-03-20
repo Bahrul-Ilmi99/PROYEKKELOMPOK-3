@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi - Pemasaran Tahu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #2e7d32;
+            color: white;
+            padding: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #a5d6a7;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin: 8px 0;
+            background: #388e3c;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #66bb6a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Konten utama */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .header {
+            background: #2e7d32;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .transaksi-container {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .transaksi-container h3 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .form-container input {
+            padding: 7px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background: #388e3c;
+            color: white;
+            padding: 7px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .btn:hover {
+            background: #66bb6a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Pemasaran Tahu</h2>
+        <a href="menu.html">🏠 Home</a>
+        <a href="laporan.html">📊 Laporan</a>
+        <a href="stok_produk.html">📦 Stok Produk</a>
+        <a href="transaksi.html">🛒 Transaksi</a>
+        <a href="pengiriman.html">🚚 Pengiriman</a>
+        <a href="pengaturan.html">⚙ Pengaturan</a>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="content">
+        <div class="header">Manajemen Transaksi</div>
+        <div class="transaksi-container">
+            <h3>Tambah Transaksi</h3>
+            <div class="form-container">
+                <input type="text" id="namaPelanggan" placeholder="Nama Pelanggan">
+                <input type="text" id="produk" placeholder="Nama Produk">
+                <input type="number" id="jumlah" placeholder="Jumlah">
+                <input type="number" id="total" placeholder="Total Harga">
+                <button class="btn" onclick="tambahTransaksi()">Tambah</button>
+            </div>
+            <table id="tabelTransaksi">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pelanggan</th>
+                        <th>Produk</th>
+                        <th>Jumlah</th>
+                        <th>Total Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data transaksi diisi oleh JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let dataTransaksi = [];
+
+        function renderTransaksi() {
+            const tbody = document.querySelector("#tabelTransaksi tbody");
+            tbody.innerHTML = "";
+            dataTransaksi.forEach((item, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.namaPelanggan}</td>
+                        <td>${item.produk}</td>
+                        <td>${item.jumlah}</td>
+                        <td>Rp${item.total}</td>
+                        <td><button class="btn" onclick="hapusTransaksi(${index})">Hapus</button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        function tambahTransaksi() {
+            const namaPelanggan = document.getElementById('namaPelanggan').value;
+            const produk = document.getElementById('produk').value;
+            const jumlah = document.getElementById('jumlah').value;
+            const total = document.getElementById('total').value;
+
+            if (namaPelanggan && produk && jumlah && total) {
+                dataTransaksi.push({ namaPelanggan, produk, jumlah, total });
+                renderTransaksi();
+                document.getElementById('namaPelanggan').value = '';
+                document.getElementById('produk').value = '';
+                document.getElementById('jumlah').value = '';
+                document.getElementById('total').value = '';
+            } else {
+                alert("Lengkapi semua data transaksi!");
+            }
+        }
+
+        function hapusTransaksi(index) {
+            if (confirm("Yakin ingin menghapus transaksi ini?")) {
+                dataTransaksi.splice(index, 1);
+                renderTransaksi();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

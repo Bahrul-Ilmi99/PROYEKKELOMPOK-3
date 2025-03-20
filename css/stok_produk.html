@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stok Produk - Pemasaran Tahu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            background: linear-gradient(to right, #e8f5e9, #c8e6c9);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #2e7d32;
+            color: white;
+            padding: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            color: #a5d6a7;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin: 8px 0;
+            background: #388e3c;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .sidebar a:hover {
+            background: #66bb6a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Konten utama */
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .header {
+            background: #2e7d32;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .stock-container {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .stock-container h3 {
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .btn {
+            background: #388e3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 2px;
+        }
+
+        .btn:hover {
+            background: #66bb6a;
+        }
+
+        .form-container {
+            margin-bottom: 20px;
+        }
+
+        .form-container input {
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Pemasaran Tahu</h2>
+        <a href="menu.html">🏠 Home</a>
+        <a href="laporan.html">📊 Laporan</a>
+        <a href="stok_produk.html">📦 Stok Produk</a>
+        <a href="transaksi.html">🛒 Transaksi</a>
+        <a href="pengiriman.html">🚚 Pengiriman</a>
+        <a href="pengaturan.html">⚙ Pengaturan</a>
+    </div>
+
+    <!-- Konten utama -->
+    <div class="content">
+        <div class="header">Manajemen Stok Produk</div>
+        <div class="stock-container">
+            <div class="form-container">
+                <input type="text" id="namaProduk" placeholder="Nama Produk">
+                <input type="number" id="stok" placeholder="Stok">
+                <input type="text" id="harga" placeholder="Harga">
+                <button class="btn" onclick="tambahProduk()">Tambah</button>
+            </div>
+            <table id="tabelStok">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Stok</th>
+                        <th>Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data akan di-render dengan JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let dataStok = [
+            { namaProduk: 'Tahu Putih', stok: 100, harga: 'Rp2.000' },
+            { namaProduk: 'Tahu Kuning', stok: 80, harga: 'Rp2.500' }
+        ];
+
+        function renderStok() {
+            const tbody = document.querySelector("#tabelStok tbody");
+            tbody.innerHTML = "";
+            dataStok.forEach((item, index) => {
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${item.namaProduk}</td>
+                        <td>${item.stok}</td>
+                        <td>${item.harga}</td>
+                        <td>
+                            <button class="btn" onclick="editProduk(${index})">Edit</button>
+                            <button class="btn" onclick="hapusProduk(${index})">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function tambahProduk() {
+            const namaProduk = document.getElementById('namaProduk').value;
+            const stok = document.getElementById('stok').value;
+            const harga = document.getElementById('harga').value;
+
+            if (namaProduk && stok && harga) {
+                dataStok.push({ namaProduk, stok, harga });
+                renderStok();
+                document.getElementById('namaProduk').value = '';
+                document.getElementById('stok').value = '';
+                document.getElementById('harga').value = '';
+            } else {
+                alert("Lengkapi semua data produk!");
+            }
+        }
+
+        function hapusProduk(index) {
+            if (confirm("Yakin ingin menghapus produk ini?")) {
+                dataStok.splice(index, 1);
+                renderStok();
+            }
+        }
+
+        function editProduk(index) {
+            const item = dataStok[index];
+            document.getElementById('namaProduk').value = item.namaProduk;
+            document.getElementById('stok').value = item.stok;
+            document.getElementById('harga').value = item.harga;
+            hapusProduk(index);
+        }
+
+        renderStok();
+    </script>
+
+</body>
+
+</html>
